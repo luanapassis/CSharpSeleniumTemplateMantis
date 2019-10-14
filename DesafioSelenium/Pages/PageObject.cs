@@ -4,9 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DesafioBase2
+namespace DesafioSelenium.Pages
 {
-    public class Class1
-    {
-    }
+    [AttributeUsage(AttributeTargets.Field)]
+    public class PageObject : Attribute { }
 }
