@@ -18,18 +18,9 @@ namespace DesafioUtils.SeleniumUtilitarios
 {
     public class DriverFactory
     {
-              
-
         public static IWebDriver Instance { get; set; }
-        /// <summary>
-        /// Base URL of the site being tested.
-        /// </summary>
         public static string BaseUrl { get; set; }
 
-        //public DriverFactory()
-        //{
-        //    Instance = null;
-        //}
 
         public static void Initialize(String browser)
         {
@@ -54,82 +45,13 @@ namespace DesafioUtils.SeleniumUtilitarios
                 Instance = GetPhantomJSDriver();
             }
 
-            // Initialize base URL and maximize browser
+            // inicializa o browser e maximiza a tela 
             BaseUrl = ConfigurationManager.AppSettings["BaseURL"];
-
+            //deleta cookies
             Instance.Manage().Cookies.DeleteAllCookies();
-
-
-
+            //navega para a URL parametrizada no app config
             NavigationHelper.NavigateToUrl(BaseUrl);
-
-            // If we are running against a remote webdriver.
-            //if (ConfigurationManager.AppSettings["RemoteChromeDriver"].Equals("true"))
-            //{
-            //    //// Create the driver.
-            //    //DesiredCapabilities capabilities = DesiredCapabilities.Chrome();
-            //    //Uri uri = new Uri("http://10.17.14.23:4444/hd/hub");
-
-            //    //// Create an event firing webdriver.
-            //    //var firingDriver = new EventFiringWebDriver(new RemoteWebDriver(uri, capabilities));
-
-
-            //    //Instance = firingDriver;
-
-            //    //DesiredCapabilities capabilities = new DesiredCapabilities();
-            //    //capabilities = DesiredCapabilities.F();
-            //    //capabilities.SetCapability(CapabilityType.BrowserName, "chrome");
-            //    //capabilities.SetCapability(CapabilityType.Platform, new Platform(PlatformType.Windows));
-
-            //    //var cap = capabilities;
-            //    //Instance = new RemoteWebDriver(new Uri("http://10.17.14.23:4444/hd/hub/"), capabilities);
-
-            //    //var url = "http://10.17.14.23:4444/hd/hub/";
-            //    //var capabilities = new ChromeOptions().ToCapabilities();
-            //    //var commandTimeout = TimeSpan.FromMinutes(5);
-
-            //    //string uri = new Uri(url).LocalPath;
-
-            //    //Instance = new RemoteWebDriver(new Uri(uri), capabilities, commandTimeout);
-
-            //    //DesiredCapabilities capability = DesiredCapabilities.Chrome();
-            //    //capability.SetCapability(CapabilityType.Platform, "WINDOWS");
-            //    //capability.SetCapability(CapabilityType.BrowserName, "firefox");
-            //    //capability.SetCapability(CapabilityType.Version, "5.0");
-
-            //    Instance = new RemoteWebDriver(new Uri("http://10.17.14.23:4444/hd/hub"), DesiredCapabilities.Firefox());
-
-
-
-
-
-
-
-
-            //    //RemoteWebDriver driver;
-            //    //DesiredCapabilities capability = DesiredCapabilities.Chrome();
-
-            //    ////capability.SetCapability(CapabilityType.Platform, PlatformType.Windows);
-            //    ////capability.SetCapability(CapabilityType.BrowserName, "chrome");
-
-
-            //    //driver = new RemoteWebDriver(
-            //    //  new Uri(hubAddress), capability, TimeSpan.FromSeconds(600));// NOTE: connection timeout of 600 seconds or more required for time to launch grid nodes if non are available.
-
-            //    ////ISelenium selenium = new WebDriverBackedSelenium(Instance, hubAddress);
-            //    ////selenium.Start();
-
-
-
-
-            //}
-            //else
-            //{
-
-
-            //}
-
-
+            
 
         }
 

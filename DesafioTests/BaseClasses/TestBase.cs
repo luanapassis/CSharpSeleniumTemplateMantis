@@ -20,17 +20,14 @@ namespace DesafioTests.BaseClasses
 
         private ProxyGenerator ProxyGenerator;
 
-        //public static int qntTestes;
-        //public static int qntTestesFalhas;
-        //public static double porcentagemTestes;
-
-
         public TestBase()
         {
             this.ProxyGenerator = new ProxyGenerator();
 
             if (DriverFactory.Instance == null)
             {
+                //cria instancia do browser 
+                //passa o browser a ser testado
                 DriverFactory.Initialize(ConfigurationManager.AppSettings["Browser"]);
             }
 
@@ -64,7 +61,7 @@ namespace DesafioTests.BaseClasses
         {
             Reporter.InitializeReport();
 
-            PlaylistTestHelper.CreatePlaylistArchive();
+            //nao sei pra q server PlaylistTestHelper.CreatePlaylistArchive();
 
         }
 
@@ -84,7 +81,7 @@ namespace DesafioTests.BaseClasses
             Reporter.InfoTestAddScreenshot();
             Reporter.GenerateReport();
 
-            PlaylistTestHelper.AddTestToPlaylist();
+            //nao sei pra q server PlaylistTestHelper.AddTestToPlaylist();
             var result = TestContext.CurrentContext.Result.Outcome.Status;
             //if (result == TestStatus.Failed)
             //{

@@ -8,7 +8,6 @@ using OpenQA.Selenium;
 using DesafioUtils.SeleniumUtilitarios;
 using DesafioUtils.SeleniumHelpers;
 
-
 namespace DesafioSelenium.Pages
 {
     public class Page_Inicial
@@ -40,7 +39,14 @@ namespace DesafioSelenium.Pages
         }
         public void buscaRapida(string texto)
         {
-            campoBusca.SendKeys(texto);
+            campoBusca.SendKeys(texto);           
         }
+
+
+       
+
     }
 }
+
+
+

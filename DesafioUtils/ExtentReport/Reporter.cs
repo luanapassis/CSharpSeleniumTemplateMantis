@@ -18,8 +18,6 @@ namespace DesafioUtils.ExtentReport
 {
     public class Reporter
     {
-
-        //private Reporter Instance;
         public static ExtentReports _extent;
         public static ExtentTest _test;
         public static Scenario _scenario;
@@ -29,7 +27,6 @@ namespace DesafioUtils.ExtentReport
         public static DateTime startTime;
 
         static string reportName = "Teste_" + DateTime.Now.ToString("dd-MM-yyyy_HH-mm");
-
         static string projectBinDebugPath = AppDomain.CurrentDomain.BaseDirectory;
         static FileInfo fileInfo = new FileInfo(projectBinDebugPath);
         static DirectoryInfo projectFolder = fileInfo.Directory;
@@ -46,14 +43,10 @@ namespace DesafioUtils.ExtentReport
                 startTime = DateTime.Now;
                 _extent = new ExtentReports();
                 System.IO.Directory.CreateDirectory(reportRootPath);
-                //System.IO.Directory.CreateDirectory(config.GetReportPath());
 
-                //Html = new ExtentHtmlReporter(String.Format(config.GetReportPath() + @"\{0}.html", config.GetReportPath().Split('\\')[3] + " - Testes Automatizados - execucao_" + DateTime.Now.ToString("dd-MM-yyyyTHH-mm-ss")));
                 var Html = new ExtentHtmlReporter(fullReportFilePath);
                 Html.Config.DocumentTitle = "Algum nome qualquer";
                 Html.Config.ReportName = "Nome do relatório";
-                //Html.Configuration().ChartVisibilityOnOpen = true;
-                //Html.Configuration().ChartLocation = ChartLocation.Top;
                 Html.Config.JS = "var testsDiv = $(\".np-h:nth-child(1)\"); " +
                                           "var stepsDiv = $(\".np-h:nth-child(2)\"); " +
                                           "testsDiv.attr(\"class\", \"col s12 m12 np-h\"); " +
@@ -62,7 +55,6 @@ namespace DesafioUtils.ExtentReport
                 _extent.AttachReporter(Html);
             }
         }
-
 
         public static void AddTest()
         {
@@ -81,6 +73,7 @@ namespace DesafioUtils.ExtentReport
             }
             else if ((TestType == "SpecflowTests"))
             {
+                #region comentado
                 /*
                 var featureTitle = GetCurrentContextScenarioHelper.GetFeatureTitle();
                 var scenarioTitle = GetCurrentContextScenarioHelper.GetScenarioTitle();
@@ -89,6 +82,7 @@ namespace DesafioUtils.ExtentReport
 
                 _test = feature.CreateNode<Scenario>(featureTitle);
                 */
+                #endregion
             }
 
 
@@ -197,6 +191,7 @@ namespace DesafioUtils.ExtentReport
             }
             else if ((TestType == "SpecflowTests"))
             {
+                #region Comentado
                 /*
                 var stepType = GetCurrentContextScenarioHelper.getStepType();
                 var desc = GetCurrentContextScenarioHelper.GetStepDescription();
@@ -218,7 +213,7 @@ namespace DesafioUtils.ExtentReport
                         break;
                 }
                 */
-
+                #endregion
             }
             DriverFactory.GetJSError();
 
@@ -227,11 +222,7 @@ namespace DesafioUtils.ExtentReport
 
         public static void FailTest(string text)
         {
-            //if (TestType == "NunitTests")
-            //{
 
-            //    _test.Log(Status.Fail, text);
-            //}
             _test.Log(Status.Fail, text);
             DriverFactory.GetJSError();
             Assert.Fail();
@@ -287,29 +278,7 @@ namespace DesafioUtils.ExtentReport
 
         }
 
-        public static void AddSystemInfo()
-        {
-            //_extent.AddSystemInfo("User Name", ConfigurationManager.AppSettings["Login"]);
-            //_extent.AddSystemInfo("Autor", ConfigurationManager.AppSettings["Autor"]);
-            //_extent.AddSystemInfo("OS", ConfigurationManager.AppSettings["OS"]);
-            //_extent.AddSystemInfo("Domain", ConfigurationManager.AppSettings["Domain"]);
-            //_extent.AddSystemInfo("Machine Name", ConfigurationManager.AppSettings["MachineName"]);
-
-            //_extent.AddSystemInfo("Selenium Webdriver Version", "v" + ConfigurationManager.AppSettings["SeleniumVersion"]);
-
-            //_extent.AddSystemInfo("Extent Report Version", "v" + ConfigurationManager.AppSettings["ExtentReport"]);
-
-            //if (TestType == "NunitTests")
-            //{
-            //    _extent.AddSystemInfo("NUnit Version", "v" + ConfigurationManager.AppSettings["NUnitVersion"]);
-            //}
-            //else if (TestType == "SpecflowTests")
-            //{
-            //    _extent.AddSystemInfo("Specflow Version", "v" + ConfigurationManager.AppSettings["SpecflowVersion"]);
-            //}
-
-        }
-
+        
         public static void GenerateReport()
         {
             DriverFactory.GetJSError();

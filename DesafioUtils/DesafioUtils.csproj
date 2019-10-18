@@ -98,7 +98,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AchivesHelpres\PlaylistTestHelper.cs" />
+    <Compile Include="AchivesHelpres\_PlaylistTestHelper.cs" />
     <Compile Include="BDDHelpers\GetCurrentContextScenarioHelper.cs" />
     <Compile Include="ExtentReport\Reporter.cs" />
     <Compile Include="NunitHelpers\GetCurrentContextTestHelper.cs" />

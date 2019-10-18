@@ -11,12 +11,14 @@ namespace DesafioUtils.SeleniumHelpers
 {
     public class NavigationHelper
     {
+        //classe responsável por abrir a URL parametrizada no app.config
         public static void NavigateToUrl(String url)
         {
             DriverFactory.Instance.Navigate().GoToUrl(url);
             string pageName = DriverFactory.Instance.Title;
 
             Reporter.InfoTest(Utilitarios.GetCurrentMethod() + " => " + "Acessando a página: " + pageName + " \n- URL: " + url);
+    
         }
 
         public static void NavigateToUrl(object p)

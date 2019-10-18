@@ -5,8 +5,10 @@ using System.IO;
 
 namespace DesafioUtils.AchivesHelpres
 {
-    public class PlaylistTestHelper
+    public class _PlaylistTestHelper
     {
+
+        //forte candidata a ser apagada, nao sei pra q serve
         public static string path;
         public static string nomeArquivo;
         public static string extensao;
