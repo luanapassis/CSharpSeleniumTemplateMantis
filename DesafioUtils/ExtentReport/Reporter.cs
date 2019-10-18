@@ -50,8 +50,8 @@ namespace DesafioUtils.ExtentReport
 
                 //Html = new ExtentHtmlReporter(String.Format(config.GetReportPath() + @"\{0}.html", config.GetReportPath().Split('\\')[3] + " - Testes Automatizados - execucao_" + DateTime.Now.ToString("dd-MM-yyyyTHH-mm-ss")));
                 var Html = new ExtentHtmlReporter(fullReportFilePath);
-                Html.Config.DocumentTitle = "Olé Consignado e Base2 - QA";
-                Html.Config.ReportName = "Testes Funcionais Automatizados - Novas Esteiras";
+                Html.Config.DocumentTitle = "Algum nome qualquer";
+                Html.Config.ReportName = "Nome do relatório";
                 //Html.Configuration().ChartVisibilityOnOpen = true;
                 //Html.Configuration().ChartLocation = ChartLocation.Top;
                 Html.Config.JS = "var testsDiv = $(\".np-h:nth-child(1)\"); " +

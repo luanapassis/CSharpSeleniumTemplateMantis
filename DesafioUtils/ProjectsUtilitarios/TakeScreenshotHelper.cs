@@ -14,7 +14,8 @@ namespace DesafioUtils.ProjectsUtilitarios
         public static string fileName = string.Empty;
         public static String TakeScreenShot()
         {
-            fileName = GetPathTakeScreenShot();
+            // comentado temporariamente 
+            //fileName = GetPathTakeScreenShot();
 
 
             Screenshot ss = ((ITakesScreenshot)DriverFactory.Instance).GetScreenshot();
@@ -34,6 +35,7 @@ namespace DesafioUtils.ProjectsUtilitarios
 
         }
 
+        //essa função não está sendo usanda por enquanto
         public static string GetPathTakeScreenShot()
         {
             var dir = Utilitarios.CreateDirectoryFolder(GetCurrentContextTestHelper.GetTestDirectoryName(), "\\" + DateTime.Now.ToString("dd-MM-yyyy"));

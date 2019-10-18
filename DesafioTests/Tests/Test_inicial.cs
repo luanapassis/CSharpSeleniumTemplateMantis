@@ -20,5 +20,10 @@ namespace DesafioTests.Tests
             
             pageInicial.clicaNovoChamado();
         }
+        [Test]
+        public void teste2()
+        {
+            pageInicial.buscaRapida("Teste");
+        }
     }
 }

@@ -25,6 +25,8 @@ namespace DesafioSelenium.Pages
 
         public IWebElement campoNovo => DriverFactory.Instance.FindElement(By.XPath("//*[@id='opcaoBoxNovoChamado']/img"));
 
+        public IWebElement campoBusca => DriverFactory.Instance.FindElement(By.Id("buscaRapida"));
+
         public void abrirPagina()
         {
             NavigationHelper.NavigateToUrl(DriverFactory.BaseUrl);
@@ -35,6 +37,10 @@ namespace DesafioSelenium.Pages
         {
             
              campoNovo.Click();
+        }
+        public void buscaRapida(string texto)
+        {
+            campoBusca.SendKeys(texto);
         }
     }
 }
