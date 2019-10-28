@@ -105,7 +105,7 @@ namespace DesafioTests.BaseClasses
                 //DriverFactory.Instance.Dispose();
                 */
             }
-            DriverFactory.Instance.Quit();
+           // DriverFactory.Instance.Quit();
         }
 
     }

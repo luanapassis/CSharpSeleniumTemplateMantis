@@ -7,6 +7,8 @@ using OpenQA.Selenium.Support.UI;
 using OpenQA.Selenium;
 using DesafioUtils.SeleniumUtilitarios;
 using DesafioUtils.SeleniumHelpers;
+using DesafioUtils.JavaScriptHelpres;
+
 
 namespace DesafioSelenium.Pages
 {
@@ -22,9 +24,12 @@ namespace DesafioSelenium.Pages
             //teste driver = DriverFactory.Instance;
         }
 
-        public IWebElement campoNovo => DriverFactory.Instance.FindElement(By.XPath("//*[@id='opcaoBoxNovoChamado']/img"));
+        public IWebElement campoUsuario => DriverFactory.Instance.FindElement(By.Id("username"));
 
-        public IWebElement campoBusca => DriverFactory.Instance.FindElement(By.Id("buscaRapida"));
+        public IWebElement btnEntrar => DriverFactory.Instance.FindElement(By.XPath("/html/body/div[1]/div/div/div/div/div[4]/div/div/div[1]/form/fieldset/input[2]"));
+
+        public IWebElement campoSenha => DriverFactory.Instance.FindElement(By.Id("password"));
+        public IWebElement btnEntrar2 => DriverFactory.Instance.FindElement(By.XPath("/html/body/div[1]/div/div/div/div/div[4]/div/div/div/form/fieldset/input[3]"));
 
         public void abrirPagina()
         {
@@ -32,18 +37,23 @@ namespace DesafioSelenium.Pages
 
         }
 
-        public void clicaNovoChamado()
-        {
-            
-             campoNovo.Click();
+        public void preencheUsuario(string usuario)
+        {            
+            campoUsuario.SendKeys(usuario);
         }
-        public void buscaRapida(string texto)
+        public void clicaBtnEntra()
         {
-            campoBusca.SendKeys(texto);           
+            btnEntrar.Click();          
+        }
+        public void preencheSenha(string senha)
+        {
+            campoSenha.SendKeys(senha);
+        }
+        public void clicaBtnEntra2()
+        {
+            btnEntrar2.Click();
         }
 
-
-       
 
     }
 }

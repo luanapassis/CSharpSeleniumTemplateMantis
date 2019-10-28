@@ -101,6 +101,8 @@
     <Compile Include="AchivesHelpres\_PlaylistTestHelper.cs" />
     <Compile Include="BDDHelpers\GetCurrentContextScenarioHelper.cs" />
     <Compile Include="ExtentReport\Reporter.cs" />
+    <Compile Include="JavaScriptHelpers\JavaScriptExecutorHelper.cs" />
+    <Compile Include="JavaScriptHelpers\JavaScriptPopUpHelper.cs" />
     <Compile Include="NunitHelpers\GetCurrentContextTestHelper.cs" />
     <Compile Include="ProjectsUtilitarios\DateHelper.cs" />
     <Compile Include="ProjectsUtilitarios\TakeScreenshotHelper.cs" />
