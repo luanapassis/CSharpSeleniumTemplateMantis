@@ -88,6 +88,7 @@ namespace DesafioUtils.SeleniumUtilitarios
         {
             ChromeOptions option = new ChromeOptions();
             option.AddArgument("start-maximized");
+            option.AddArgument("--no-sandbox"); //chrome was crashing
             option.SetLoggingPreference(LogType.Browser, LogLevel.All);
 
 

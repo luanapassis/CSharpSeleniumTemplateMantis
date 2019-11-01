@@ -34,6 +34,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Dapper, Version=1.50.5.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Dapper.1.50.5\lib\net451\Dapper.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="DnsClient, Version=1.0.7.0, Culture=neutral, PublicKeyToken=4574bb5573c51424, processorArchitecture=MSIL">
       <HintPath>..\packages\DnsClient.1.0.7\lib\net45\DnsClient.dll</HintPath>
       <Private>True</Private>
@@ -71,6 +75,7 @@
       <HintPath>..\packages\System.Buffers.4.3.0\lib\netstandard1.1\System.Buffers.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="System.configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Runtime.InteropServices.RuntimeInformation, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
@@ -97,13 +102,17 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DataDriven\ExcelDataAccess.cs" />
+    <Compile Include="DataDriven\UserData.cs" />
     <Compile Include="Pages\Page_Home.cs" />
+    <Compile Include="Steps\Step_home.cs" />
     <Compile Include="Steps\Step_Inicial.cs" />
     <Compile Include="Pages\PageObject.cs" />
     <Compile Include="Pages\Page_Inicial.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="DataDriven\TestData.xlsx" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>

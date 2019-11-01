@@ -8,6 +8,7 @@ using OpenQA.Selenium;
 using DesafioUtils.SeleniumUtilitarios;
 using DesafioUtils.SeleniumHelpers;
 using DesafioUtils.JavaScriptHelpres;
+using DesafioSelenium.DataDriven;
 
 
 namespace DesafioSelenium.Pages
@@ -53,9 +54,27 @@ namespace DesafioSelenium.Pages
         {
             btnEntrar2.Click();
         }
+        public void preencheUsuarioDataDriven(string testName)
+        {
+            var userData = ExcelDataAccess.GetTestData(testName);
+            campoUsuario.SendKeys(userData.Username);
+        }
+        public void preencheSenhaDataDriven(string testName)
+        {
+            var userData = ExcelDataAccess.GetTestData(testName);
+            campoSenha.SendKeys(userData.Password);
+        }
+        public string retornaUsuarioDataDriven(string testName)
+        {
+            var userData = ExcelDataAccess.GetTestData(testName);
+            return (userData.Username);
+        }
+            
+           
 
+   }
 
-    }
+    
 }
 
 

@@ -21,7 +21,18 @@ namespace DesafioSelenium.Flows
             pageInicial.clicaBtnEntra();
             pageInicial.preencheSenha(senha);
             pageInicial.clicaBtnEntra2();
-        }
 
+        }
+        public void fazLoginDataDriven(string testName)
+        {
+            pageInicial.preencheUsuarioDataDriven(testName);
+            pageInicial.clicaBtnEntra();
+            pageInicial.preencheSenhaDataDriven(testName);
+            pageInicial.clicaBtnEntra2();
+        }
+        public string retornaUsuarioDataDriven(string testName)
+        {
+            return pageInicial.retornaUsuarioDataDriven(testName);
+        }
     }
 }

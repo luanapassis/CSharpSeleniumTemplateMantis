@@ -12,5 +12,12 @@ namespace DesafioSelenium.Pages
 {
     public class Page_Home
     {
+        public IWebElement usuLogado => DriverFactory.Instance.FindElement(By.XPath("/html/body/div[1]/div/div[2]/ul/li[3]/a/span"));
+
+        public string retornaUsuLogado()
+        {
+           return usuLogado.Text;
+
+        }
     }
 }
