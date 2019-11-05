@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 using DesafioUtils.JavaScriptHelpres;
 using DesafioSelenium.DataDriven;
 using DesafioSelenium.Steps;
+using DesafioUtils.DataBaseHelpres;
 
 namespace DesafioTests.Tests
 {
@@ -46,6 +47,13 @@ namespace DesafioTests.Tests
         {
             string testCase = "LoginSucesso";            
             stepInicial.fazLoginDataDriven(testCase);
+        }
+        [Test]
+        public void Test_banco()
+        {
+            DataBaseInteractions db = new DataBaseInteractions();
+            db.DBRunQuery("SELECT * from mantis_user_table WHERE id = 1");
+   
         }
     }
 }
