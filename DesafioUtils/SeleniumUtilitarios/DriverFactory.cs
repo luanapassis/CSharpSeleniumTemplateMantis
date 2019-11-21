@@ -48,7 +48,7 @@ namespace DesafioUtils.SeleniumUtilitarios
             // inicializa o browser e maximiza a tela 
             BaseUrl = ConfigurationManager.AppSettings["BaseURL"];
             //deleta cookies
-            Instance.Manage().Cookies.DeleteAllCookies();
+            //Instance.Manage().Cookies.DeleteAllCookies();
             //navega para a URL parametrizada no app config
             NavigationHelper.NavigateToUrl(BaseUrl);
             

@@ -38,6 +38,14 @@
       <HintPath>..\packages\DnsClient.1.0.7\lib\net45\DnsClient.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="ExcelDataReader, Version=3.4.2.0, Culture=neutral, PublicKeyToken=93517dbe6a4012fa, processorArchitecture=MSIL">
+      <HintPath>..\packages\ExcelDataReader.3.4.2\lib\net45\ExcelDataReader.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="ExcelDataReader.DataSet, Version=3.4.2.0, Culture=neutral, PublicKeyToken=93517dbe6a4012fa, processorArchitecture=MSIL">
+      <HintPath>..\packages\ExcelDataReader.DataSet.3.4.2\lib\net35\ExcelDataReader.DataSet.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="ExtentReports, Version=4.0.3.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\ExtentReports.4.0.3\lib\ExtentReports.dll</HintPath>
       <Private>True</Private>
@@ -82,6 +90,7 @@
     <Reference Include="System.configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.IO.Compression" />
     <Reference Include="System.Runtime.InteropServices.RuntimeInformation, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Runtime.InteropServices.RuntimeInformation.4.0.0\lib\net45\System.Runtime.InteropServices.RuntimeInformation.dll</HintPath>
       <Private>True</Private>
@@ -108,6 +117,7 @@
   <ItemGroup>
     <Compile Include="AchivesHelpres\_PlaylistTestHelper.cs" />
     <Compile Include="BDDHelpers\GetCurrentContextScenarioHelper.cs" />
+    <Compile Include="SeleniumHelpers\Elements\ButtonHelper.cs" />
     <Compile Include="DataBaseHelpres\DatabaseInteractions.cs" />
     <Compile Include="ExtentReport\Reporter.cs" />
     <Compile Include="JavaScriptHelpers\JavaScriptExecutorHelper.cs" />
@@ -117,8 +127,15 @@
     <Compile Include="ProjectsUtilitarios\TakeScreenshotHelper.cs" />
     <Compile Include="ProjectsUtilitarios\Utilitarios.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SeleniumHelpers\DynamicWaitHelper.cs" />
+    <Compile Include="SeleniumHelpers\Elements\CheckBoxHelper.cs" />
+    <Compile Include="SeleniumHelpers\Elements\ComboBoxHelper.cs" />
+    <Compile Include="SeleniumHelpers\Elements\RadioButtonHelper.cs" />
+    <Compile Include="SeleniumHelpers\Elements\SeleniumGetElement.cs" />
+    <Compile Include="SeleniumHelpers\Elements\TextBoxHelper.cs" />
     <Compile Include="SeleniumHelpers\JavaScriptExecutor.cs" />
     <Compile Include="SeleniumHelpers\NavigationHelper.cs" />
+    <Compile Include="SeleniumHelpers\SeleniumGetElement.cs" />
     <Compile Include="SeleniumUtilitarios\DriverFactory.cs" />
   </ItemGroup>
   <ItemGroup>

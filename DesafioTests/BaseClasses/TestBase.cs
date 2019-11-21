@@ -82,7 +82,7 @@ namespace DesafioTests.BaseClasses
             Reporter.GenerateReport();
 
             //nao sei pra q server PlaylistTestHelper.AddTestToPlaylist();
-            var result = TestContext.CurrentContext.Result.Outcome.Status;
+            //var result = TestContext.CurrentContext.Result.Outcome.Status;
             //if (result == TestStatus.Failed)
             //{
            //     qntTestesFalhas++;
@@ -93,18 +93,6 @@ namespace DesafioTests.BaseClasses
         public void OneTimeTearDown()
         {
 
-            if (TestContext.CurrentContext.Test.Name == "SUT999CleanUpTest")
-            {
-             /*  tirar isso daqui, é para mandar email.
-              *   int sucesso = qntTestes - qntTestesFalhas;
-                porcentagemTestes = (100 * sucesso) / qntTestes;
-
-                SendEmail.SendOutlookEmail(qntTestes, sucesso, porcentagemTestes);
-                PlaylistTestHelper.WriteAndClosePlaylist();
-                DriverFactory.Instance.Quit();
-                //DriverFactory.Instance.Dispose();
-                */
-            }
            // DriverFactory.Instance.Quit();
         }
 

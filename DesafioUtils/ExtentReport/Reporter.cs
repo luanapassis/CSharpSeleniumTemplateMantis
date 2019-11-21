@@ -88,6 +88,13 @@ namespace DesafioUtils.ExtentReport
 
 
         }
+        public static void AddTestInfo(string text)
+        {
+            //addicionado para inserir informação de click no relatorio
+            _test.Log(Status.Info, text);
+            
+        }
+
         public static void PassTest(string text)
         {
             if (TestType == "NunitTests")
@@ -134,6 +141,15 @@ namespace DesafioUtils.ExtentReport
                     _test.Info(DriverFactory.Instance.Url, MediaEntityBuilder.CreateScreenCaptureFromPath(screenshot).Build());
                     break;
             }
+            DriverFactory.GetJSError();
+
+        }
+        public static void JustAddScreenshot()
+        {
+            String screenshot = TakeScreenshotHelper.TakeScreenShot();
+
+            _test.Pass(DriverFactory.Instance.Url, MediaEntityBuilder.CreateScreenCaptureFromPath(screenshot).Build());
+            
             DriverFactory.GetJSError();
 
         }

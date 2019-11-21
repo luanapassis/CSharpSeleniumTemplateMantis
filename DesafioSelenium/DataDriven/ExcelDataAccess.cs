@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 namespace DesafioSelenium.DataDriven
 {
     //reference https://www.toolsqa.com/selenium-webdriver/c-sharp/data-driven-testing/
+    //muito bom, mas não funcionou com jenkins
     class ExcelDataAccess
     {
         public static string TestDataFileConnection()

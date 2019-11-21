@@ -9,7 +9,7 @@ using DesafioUtils.SeleniumUtilitarios;
 using DesafioUtils.SeleniumHelpers;
 using DesafioUtils.JavaScriptHelpres;
 using DesafioSelenium.DataDriven;
-
+using System.Configuration;
 
 namespace DesafioSelenium.Pages
 {
@@ -31,11 +31,13 @@ namespace DesafioSelenium.Pages
 
         public IWebElement campoSenha => DriverFactory.Instance.FindElement(By.Id("password"));
         public IWebElement btnEntrar2 => DriverFactory.Instance.FindElement(By.XPath("/html/body/div[1]/div/div/div/div/div[4]/div/div/div/form/fieldset/input[3]"));
+        public IWebElement msgErroLogin => DriverFactory.Instance.FindElement(By.XPath("/html/body/div[1]/div/div/div/div/div[4]/p"));
+
 
         public void abrirPagina()
         {
-            NavigationHelper.NavigateToUrl(DriverFactory.BaseUrl);
-
+            DriverFactory.Instance.Manage().Cookies.DeleteAllCookies();
+            NavigationHelper.NavigateToUrl(DriverFactory.BaseUrl);           
         }
 
         public void preencheUsuario(string usuario)
@@ -54,6 +56,7 @@ namespace DesafioSelenium.Pages
         {
             btnEntrar2.Click();
         }
+        #region dataDriven modelo 1
         public void preencheUsuarioDataDriven(string testName)
         {
             var userData = ExcelDataAccess.GetTestData(testName);
@@ -69,12 +72,37 @@ namespace DesafioSelenium.Pages
             var userData = ExcelDataAccess.GetTestData(testName);
             return (userData.Username);
         }
-            
+        #endregion
+
+        #region dataDriven modelo 2
+        public string loginDataDriven2(int linha, string fileName)
+        {
            
+            ExcelUtil util = new ExcelUtil();
 
-   }
+            util.PopulateInCollection(fileName);
 
-    
+            String userName = util.ReadData(linha, "Column0");//Login
+            String password = util.ReadData(linha, "Column1");//senha 01
+
+            campoUsuario.SendKeys(userName);
+            clicaBtnEntra();
+            campoSenha.SendKeys(password);
+            clicaBtnEntra2();
+
+            return userName;
+        }    
+        public string retornaMsgErroLogin()
+        {
+            return msgErroLogin.Text;
+        }
+
+        #endregion
+
+
+    }
+
+
 }
 
 
