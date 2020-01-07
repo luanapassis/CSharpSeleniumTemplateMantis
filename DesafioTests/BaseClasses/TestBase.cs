@@ -71,7 +71,7 @@ namespace DesafioTests.BaseClasses
         {
             Reporter.AddTest();
             //qntTestes++;
-            DriverFactory.Instance.Manage().Cookies.DeleteAllCookies();
+            //DriverFactory.Instance.Manage().Cookies.DeleteAllCookies();
 
         }
 

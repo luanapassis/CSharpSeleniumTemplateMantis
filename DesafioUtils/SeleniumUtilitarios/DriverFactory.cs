@@ -13,6 +13,7 @@ using OpenQA.Selenium.Remote;
 using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.IE;
 using OpenQA.Selenium.PhantomJS;
+using OpenQA.Selenium.Edge;
 
 namespace DesafioUtils.SeleniumUtilitarios
 {
@@ -44,7 +45,10 @@ namespace DesafioUtils.SeleniumUtilitarios
             {
                 Instance = GetPhantomJSDriver();
             }
-
+            else if (browser.Equals("Edge"))
+            {
+                Instance = GetEdgeDriver();
+            }
             // inicializa o browser e maximiza a tela 
             BaseUrl = ConfigurationManager.AppSettings["BaseURL"];
             //deleta cookies
@@ -106,6 +110,13 @@ namespace DesafioUtils.SeleniumUtilitarios
             InternetExplorerOptions options = new InternetExplorerOptions();
             options.IntroduceInstabilityByIgnoringProtectedModeSettings = true;
             options.EnsureCleanSession = true;
+            options.IgnoreZoomLevel = true;
+            return options;
+        }
+
+        private static EdgeOptions GetEdgeOptions()
+        {
+            EdgeOptions options = new EdgeOptions();
             return options;
         }
 
@@ -148,6 +159,12 @@ namespace DesafioUtils.SeleniumUtilitarios
             return driver;
         }
 
+        private static IWebDriver GetEdgeDriver()
+        {
+            IWebDriver driver = new EdgeDriver("C:\\desafio base2\\Desafio Luana\\msedgedriver.exe", GetEdgeOptions());
+            return driver;
+        }
+
         public static void Quit()
         {
             Instance.Quit();
@@ -161,16 +178,20 @@ namespace DesafioUtils.SeleniumUtilitarios
 
         public static void GetJSError()
         {
-            var entries = DriverFactory.Instance.Manage().Logs.GetLog(LogType.Browser);
-
-            bool errorDisplayed = entries.Any(e => e.Level == OpenQA.Selenium.LogLevel.Severe && e.Message.Contains("javascript"));
-            if (errorDisplayed)
+            if(ConfigurationManager.AppSettings["Browser"] == "Chrome")
             {
-                foreach (var entry in entries.Where(e => e.Level == OpenQA.Selenium.LogLevel.Severe && e.Message.Contains("javascript")))
+                var entries = DriverFactory.Instance.Manage().Logs.GetLog(LogType.Browser);
+
+                bool errorDisplayed = entries.Any(e => e.Level == OpenQA.Selenium.LogLevel.Severe && e.Message.Contains("javascript"));
+                if (errorDisplayed)
                 {
-                    Reporter.InfoTestWarning(entry.Message);
+                    foreach (var entry in entries.Where(e => e.Level == OpenQA.Selenium.LogLevel.Severe && e.Message.Contains("javascript")))
+                    {
+                        Reporter.InfoTestWarning(entry.Message);
+                    }
                 }
             }
+            
         }
     
     }

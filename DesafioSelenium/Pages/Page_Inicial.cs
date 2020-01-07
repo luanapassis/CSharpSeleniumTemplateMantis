@@ -7,9 +7,11 @@ using OpenQA.Selenium.Support.UI;
 using OpenQA.Selenium;
 using DesafioUtils.SeleniumUtilitarios;
 using DesafioUtils.SeleniumHelpers;
+using DesafioUtils.SeleniumHelpers.Elements;
 using DesafioUtils.JavaScriptHelpres;
 using DesafioSelenium.DataDriven;
 using System.Configuration;
+using DesafioUtils.ButtonHelpers;
 
 namespace DesafioSelenium.Pages
 {
@@ -42,30 +44,30 @@ namespace DesafioSelenium.Pages
 
         public void preencheUsuario(string usuario)
         {            
-            campoUsuario.SendKeys(usuario);
+            campoUsuario.TypeInTextBox(usuario);
         }
         public void clicaBtnEntra()
         {
-            btnEntrar.Click();          
+            btnEntrar.ClickButton();          
         }
         public void preencheSenha(string senha)
         {
-            campoSenha.SendKeys(senha);
+            campoSenha.TypeInTextBox(senha);
         }
         public void clicaBtnEntra2()
         {
-            btnEntrar2.Click();
+            btnEntrar2.ClickButton();
         }
         #region dataDriven modelo 1
         public void preencheUsuarioDataDriven(string testName)
         {
             var userData = ExcelDataAccess.GetTestData(testName);
-            campoUsuario.SendKeys(userData.Username);
+            campoUsuario.TypeInTextBox(userData.Username);
         }
         public void preencheSenhaDataDriven(string testName)
         {
             var userData = ExcelDataAccess.GetTestData(testName);
-            campoSenha.SendKeys(userData.Password);
+            campoSenha.TypeInTextBox(userData.Password);
         }
         public string retornaUsuarioDataDriven(string testName)
         {
@@ -85,18 +87,17 @@ namespace DesafioSelenium.Pages
             String userName = util.ReadData(linha, "Column0");//Login
             String password = util.ReadData(linha, "Column1");//senha 01
 
-            campoUsuario.SendKeys(userName);
+            campoUsuario.TypeInTextBox(userName);
             clicaBtnEntra();
-            campoSenha.SendKeys(password);
+            campoSenha.TypeInTextBox(password);
             clicaBtnEntra2();
 
             return userName;
-        }    
+        }
         public string retornaMsgErroLogin()
         {
             return msgErroLogin.Text;
         }
-
         #endregion
 
 
