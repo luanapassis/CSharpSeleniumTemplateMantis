@@ -163,7 +163,7 @@ namespace DesafioUtils.SeleniumUtilitarios
         {
             IWebDriver driver = new EdgeDriver("C:\\desafio base2\\Desafio Luana\\msedgedriver.exe", GetEdgeOptions());
             return driver;
-        }
+        }//
 
         public static void Quit()
         {
