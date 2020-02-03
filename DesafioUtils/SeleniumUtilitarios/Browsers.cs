@@ -100,9 +100,7 @@ namespace DesafioUtils.SeleniumUtilitarios
         #region Edge
         public static IWebDriver GetLocalEdge()
         {
-            EdgeOptions edgeOptin = new EdgeOptions();
-            edgeOptin.AddAdditionalCapability( "no-sandbox", false);
-            return new EdgeDriver(edgeOptin);
+            return new EdgeDriver();
         }
 
         public static IWebDriver GetRemoteEdge()
