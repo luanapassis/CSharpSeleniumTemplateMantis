@@ -23,14 +23,9 @@ namespace DesafioTests.BaseClasses
         public TestBase()
         {
             this.ProxyGenerator = new ProxyGenerator();
-
-            if (DriverFactory.Instance == null)
-            {
-                //cria instancia do browser 
-                //passa o browser a ser testado
-                DriverFactory.Initialize(ConfigurationManager.AppSettings["Browser"]);
-            }
-
+             //cria instancia do browser 
+             //passa o browser a ser testado
+            DriverFactory.Initialize(ConfigurationManager.AppSettings["Browser"]);
             InjectPageObjects(CollectPageObjects(), null);
         }
 

@@ -12,12 +12,12 @@ using OpenQA.Selenium.Firefox;
 using OpenQA.Selenium.Remote;
 using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.IE;
-using OpenQA.Selenium.PhantomJS;
 using OpenQA.Selenium.Edge;
+using DesafioUtils.SeleniumUtilitarios;
 
 namespace DesafioUtils.SeleniumUtilitarios
 {
-    public class DriverFactory
+    public class DriverFactory 
     {
         public static IWebDriver Instance { get; set; }
         public static string BaseUrl { get; set; }
@@ -25,156 +25,101 @@ namespace DesafioUtils.SeleniumUtilitarios
 
         public static void Initialize(String browser)
         {
-            if (browser.Equals("Chrome"))
+            string execution = ConfigurationManager.AppSettings["execution"].ToString();
+            bool headless = bool.Parse(ConfigurationManager.AppSettings["headless"]);
+
+            if (Instance == null)
             {
-                Instance = GetChromeDriver();
+
+
+                switch (browser)
+                {
+                    case "chrome":
+                        if (execution.Equals("local"))
+                        {
+                            Instance = headless ? Browsers.GetLocalChromeHeadless() : Browsers.GetLocalChrome();
+                        }
+
+                        if (execution.Equals("remota"))
+                        {
+                            Instance = headless ? Browsers.GetRemoteChromeHeadless() : Browsers.GetRemoteChrome();
+                        }
+
+                        break;
+
+                    case "ie":
+                        if (execution.Equals("local"))
+                        {
+                            Instance = Browsers.GetLocalInternetExplorer();
+                        }
+
+                        if (Instance.Equals("remota"))
+                        {
+                            Instance = Browsers.GetRemoteInternetExplorer();
+                        }
+
+                        break;
+
+                    case "firefox":
+                        if (execution.Equals("local"))
+                        {
+                            Instance = Browsers.GetLocalFirefox();
+                        }
+
+                        if (execution.Equals("remota"))
+                        {
+                            Instance = Browsers.GetRemoteFirefox();
+                        }
+
+                        break;
+
+                    case "edge":
+                        if (execution.Equals("local"))
+                        {
+                            Instance = Browsers.GetLocalEdge();
+                        }
+
+                        if (execution.Equals("remota"))
+                        {
+                            Instance = Browsers.GetRemoteEdge();
+                        }
+
+                        break;
+
+                    default:
+                        throw new Exception("O browser informado não existe ou não é suportado pela automação");
+                }
+
+
+                // inicializa o browser e maximiza a tela 
+                BaseUrl = ConfigurationManager.AppSettings["BaseURL"];
+                //deleta cookies
+                //Instance.Manage().Cookies.DeleteAllCookies();
+                //navega para a URL parametrizada no app config
+                NavigationHelper.NavigateToUrl(BaseUrl);
 
             }
-            if (browser.Equals("Firefox"))
-            {
-                Instance = GetFirefoxDriver();
-
-            }
-
-            else if (browser.Equals("InternetExplorer"))
-            {
-                Instance = GetIEDriver();
-
-            }
-            else if (browser.Equals("PhantomJS"))
-            {
-                Instance = GetPhantomJSDriver();
-            }
-            else if (browser.Equals("Edge"))
-            {
-                Instance = GetEdgeDriver();
-            }
-            // inicializa o browser e maximiza a tela 
-            BaseUrl = ConfigurationManager.AppSettings["BaseURL"];
-            //deleta cookies
-            //Instance.Manage().Cookies.DeleteAllCookies();
-            //navega para a URL parametrizada no app config
-            NavigationHelper.NavigateToUrl(BaseUrl);
-            
-
         }
 
 
-        public static string pathFirefoxDriver = GetCurrentContextTestHelper.GetTestDirectoryName();
-
-        private static FirefoxProfile GetFirefoxProfile()
+        public static IWebDriver GetLocalChrome()
         {
-            FirefoxProfile profile = new FirefoxProfile();
-            FirefoxProfileManager manager = new FirefoxProfileManager();
+            ChromeOptions chromeOptions = new ChromeOptions();
+            chromeOptions.AddArgument("start-maximized");
+            chromeOptions.AddArgument("enable-automation");
+            chromeOptions.AddArgument("--no-sandbox");
+            chromeOptions.AddArgument("--disable-infobars");
+            chromeOptions.AddArgument("--disable-dev-shm-usage");
+            chromeOptions.AddArgument("--disable-browser-side-navigation");
+            chromeOptions.AddArgument("--disable-gpu");
+            chromeOptions.PageLoadStrategy = PageLoadStrategy.Normal;
 
-            profile.SetPreference("webdriver.gecko.driver", pathFirefoxDriver);
-
-            profile = manager.GetProfile("default");
-
-            return profile;
+            return new ChromeDriver(chromeOptions);
         }
 
-        private static FirefoxOptions GetFirefoxOptions()
-        {
-
-            var url = new Uri("http://10.6.122.49:5555/wd/hub");
-
-            var options = new FirefoxOptions();
-            options.SetPreference("webdriver.gecko.driver", pathFirefoxDriver);
-
-            var driver = new RemoteWebDriver(url, options.ToCapabilities());
-
-            return options;
-
-        }
-
-        private static ChromeOptions GetChromeOptions()
-        {
-            ChromeOptions option = new ChromeOptions();
-            option.AddArgument("start-maximized");
-            option.AddArgument("--no-sandbox"); //chrome was crashing
-            option.SetLoggingPreference(LogType.Browser, LogLevel.All);
 
 
-            if (ConfigurationManager.AppSettings["ChromeHeadless"].Equals("true"))
-            {
-                option.AddArgument("--headless");
-            }
 
-            return option;
-
-        }
-
-        private static InternetExplorerOptions GetIEOptions()
-        {
-            InternetExplorerOptions options = new InternetExplorerOptions();
-            options.IntroduceInstabilityByIgnoringProtectedModeSettings = true;
-            options.EnsureCleanSession = true;
-            options.IgnoreZoomLevel = true;
-            return options;
-        }
-
-        private static EdgeOptions GetEdgeOptions()
-        {
-            EdgeOptions options = new EdgeOptions();
-            return options;
-        }
-
-        private static PhantomJSOptions GetPhantomJsOptions()
-        {
-            PhantomJSOptions options = new PhantomJSOptions();
-            options.AddAdditionalCapability("takesScreenshot", false);
-            return options;
-        }
-
-        private static PhantomJSDriverService GetPhantomJsService()
-        {
-            PhantomJSDriverService service = PhantomJSDriverService.CreateDefaultService();
-            service.LogFile = "TestPhantomJS.log";
-            service.HideCommandPromptWindow = true;
-            return service;
-        }
-
-        private static IWebDriver GetFirefoxDriver()
-        {
-            IWebDriver driver = new FirefoxDriver(pathFirefoxDriver);
-            return driver;
-        }
-
-        private static IWebDriver GetChromeDriver()
-        {
-            IWebDriver driver = new ChromeDriver(GetChromeOptions());
-            return driver;
-        }
-
-        private static IWebDriver GetIEDriver()
-        {
-            IWebDriver driver = new InternetExplorerDriver(GetIEOptions());
-            return driver;
-        }
-
-        private static IWebDriver GetPhantomJSDriver()
-        {
-            PhantomJSDriver driver = new PhantomJSDriver(GetPhantomJsService());
-            return driver;
-        }
-
-        private static IWebDriver GetEdgeDriver()
-        {
-            IWebDriver driver = new EdgeDriver("C:\\desafio base2\\Desafio Luana\\msedgedriver.exe", GetEdgeOptions());
-            return driver;
-        }//
-
-        public static void Quit()
-        {
-            Instance.Quit();
-        }
-
-        private static FirefoxProfile CreateFirefoxProfile()
-        {
-            var firefoxProfile = new FirefoxProfile();
-            return firefoxProfile;
-        }
 
         public static void GetJSError()
         {
