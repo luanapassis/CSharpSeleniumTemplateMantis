@@ -100,27 +100,8 @@ namespace DesafioUtils.SeleniumUtilitarios
 
             }
         }
-
-
-        public static IWebDriver GetLocalChrome()
-        {
-            ChromeOptions chromeOptions = new ChromeOptions();
-            chromeOptions.AddArgument("start-maximized");
-            chromeOptions.AddArgument("enable-automation");
-            chromeOptions.AddArgument("--no-sandbox");
-            chromeOptions.AddArgument("--disable-infobars");
-            chromeOptions.AddArgument("--disable-dev-shm-usage");
-            chromeOptions.AddArgument("--disable-browser-side-navigation");
-            chromeOptions.AddArgument("--disable-gpu");
-            chromeOptions.PageLoadStrategy = PageLoadStrategy.Normal;
-
-            return new ChromeDriver(chromeOptions);
-        }
-
-
-
-
-
+        
+       
         public static void GetJSError()
         {
             if(ConfigurationManager.AppSettings["Browser"] == "Chrome")

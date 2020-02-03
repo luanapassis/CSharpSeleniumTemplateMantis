@@ -11,54 +11,37 @@ namespace DesafioUtils.DataBaseHelpres
 {
     public class DataBaseInteractions
     {
-        public static MySqlConnection GetDBConnection()
-        {
-            string connectionString = "Server=" + ConfigurationManager.AppSettings["DatabaseServer"] + ";" +
+        MySqlConnection conn = null;
+        string connectionString = "Server=" + ConfigurationManager.AppSettings["DatabaseServer"] + ";" +
                                       "Port=" + ConfigurationManager.AppSettings["Port"] + ";" +
                                       "Database=" + ConfigurationManager.AppSettings["DatabaseName"] + ";" +
                                       "UID=" + ConfigurationManager.AppSettings["DBUser"] + "; " +
                                       "Password=" + ConfigurationManager.AppSettings["DBPassword"] + ";" +
                                       "SslMode=" + ConfigurationManager.AppSettings["SslMode"];
-            MySqlConnection connection = new MySqlConnection(connectionString);
 
-            return connection;
-        }
-
-
-        public void DBRunQuery(string query)
+        private MySqlConnection GetDBConnection()
         {
-
-            //string x = "Server=192.168.99.100;Port = 3306; Database=bugtracker;UID=mantisbt;Password=mantisbt;SslMode=none";
-
-            using (MySqlCommand cmd = new MySqlCommand(query, GetDBConnection()))
-            {    //watch out for this SQL injection vulnerability below
-                cmd.Connection.Open();
-                cmd.ExecuteNonQuery();
-                var reader = cmd.ExecuteReader();
-                while (reader.Read())
-                {
-                    string someStringFromColumnZero = reader.GetString(0);
-                    string someStringFromColumnOne = reader.GetString(1);
-                    Console.WriteLine(someStringFromColumnZero + "," + someStringFromColumnOne);
-                }
-                cmd.Connection.Close();
-            }
-
-        }
-
-        /*
-        public void executaQuery(String query)
-        {
-
-
             try
             {
-                connection = getDBConnection();
+                return conn = new MySqlConnection(connectionString);
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+
+
+        public void executaQuery(String query)
+        {
+            try
+            {
                 Console.WriteLine("Connecting to MySQL...");
-                connection.Open();
+                conn.Open();
 
 
-                MySqlCommand cmd = new MySqlCommand(query, connection);
+                MySqlCommand cmd = new MySqlCommand(query, conn);
                 MySqlDataReader rdr = cmd.ExecuteReader();
 
                 while (rdr.Read())
@@ -72,44 +55,29 @@ namespace DesafioUtils.DataBaseHelpres
                 Console.WriteLine(ex.ToString());
             }
 
-            connection.Close();
+            conn.Close();
             Console.WriteLine("Done.");
-
-            
-            connection = getDBConnection();
-
-            connection.Open();
-
-            MySqlCommand cmd = new MySqlCommand(query, connection);
-            
-            cmd.CommandTimeout = Int32.Parse(ConfigurationManager.AppSettings["DBConnectionTimeout"]);
-            cmd.ExecuteNonQuery();
-            cmd.Connection.Close();
-            
         }
-       
-
-       /*
 
         public List<string> retornaDadosQuery(String query)
         {
+            conn = GetDBConnection();
 
             DataSet ds = new DataSet();
             List<string> lista = new List<string>();
 
 
-            using (SqlCommand cmd = new SqlCommand(query, getDBConnection()))
-            {
-                cmd.CommandTimeout = Int32.Parse(ConfigurationManager.AppSettings["DBConnectionTimeout"]);
-                cmd.Connection.Open();
-                DataTable table = new DataTable();
-                table.Load(cmd.ExecuteReader());
-                ds.Tables.Add(table);
-                cmd.Connection.Close();
-            }
+            MySqlCommand cmd = new MySqlCommand(query, conn);
+            cmd.CommandTimeout = Int32.Parse(ConfigurationManager.AppSettings["DBConnectionTimeout"]);
+            conn.Open();
+            MySqlDataReader rdr = cmd.ExecuteReader();
 
 
 
+            DataTable table = new DataTable();
+            table.Load(rdr);
+            ds.Tables.Add(table);
+            cmd.Connection.Close();
 
             if (ds.Tables[0].Columns.Count == 0)
             {
@@ -133,22 +101,25 @@ namespace DesafioUtils.DataBaseHelpres
         }
 
 
-
         public List<string> retornaListaDadosQuery(String query)
         {
 
             DataSet ds = new DataSet();
             List<string> lista = new List<string>();
+            conn = GetDBConnection();
+            MySqlCommand cmd = new MySqlCommand(query, conn);
+            cmd.CommandTimeout = Int32.Parse(ConfigurationManager.AppSettings["DBConnectionTimeout"]);
 
-            using (SqlCommand cmd = new SqlCommand(query, getDBConnection()))
-            {
-                cmd.CommandTimeout = Int32.Parse(ConfigurationManager.AppSettings["DBConnectionTimeout"]);
-                cmd.Connection.Open();
-                DataTable table = new DataTable();
-                table.Load(cmd.ExecuteReader());
-                ds.Tables.Add(table);
-                cmd.Connection.Close();
-            }
+
+
+            cmd.Connection.Open();
+
+            MySqlDataReader rdr = cmd.ExecuteReader();
+            DataTable table = new DataTable();
+            table.Load(rdr);
+            ds.Tables.Add(table);
+            cmd.Connection.Close();
+
 
             if (ds.Tables[0].Columns.Count == 0)
             {
@@ -173,7 +144,7 @@ namespace DesafioUtils.DataBaseHelpres
             }
             return lista;
         }
-        
-    */
+
+
     }
 }
