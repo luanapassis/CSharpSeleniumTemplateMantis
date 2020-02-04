@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 using DesafioUtils.JavaScriptHelpres;
 using DesafioSelenium.DataDriven;
 using DesafioSelenium.Steps;
-using DesafioUtils.DataBaseHelpres;
+using DesafioUtils.Queries;
 using System.Configuration;
 using DesafioUtils.ExtentReport;
 
@@ -102,13 +102,10 @@ namespace DesafioTests.Tests
         [Test]
         public void Test_banco()
         {
-            
-            DataBaseInteractions db = new DataBaseInteractions();
-            List<string> tst =  db.retornaDadosQuery("SELECT * from mantis_user_table WHERE id = 1");
+            DataBaseSteps db = new DataBaseSteps();
+            db.cargaTabelaUsuario();
 
-            //INSERT INTO mantis_user_table ( username, realname, email, PASSWORD, enabled, protected, access_level, login_count, lost_password_request_count, failed_login_count, cookie_string, last_visit, date_created)
-            //VALUES('usuario2', 'Teste','luana.assis2@gmail.com.br', 'e10adc3949ba59abbe56e057f20f883e', 1, 0, 90, 1, 0, 0, 'JCIfQbZ9Wdq0eONcOMkSOR17wMSjowjc6L', 1574199190, 1574199190)
-         }
+        }
           
 
     }

@@ -12,6 +12,7 @@ using DesafioUtils.ExtentReport;
 using System.Reflection;
 using NUnit.Framework.Interfaces;
 using DesafioSelenium.Pages;
+using DesafioUtils.Queries;
 
 namespace DesafioTests.BaseClasses
 {
@@ -56,7 +57,10 @@ namespace DesafioTests.BaseClasses
         {
             Reporter.InitializeReport();
 
-            //nao sei pra q server PlaylistTestHelper.CreatePlaylistArchive();
+            //carga no banco
+           // DataBaseSteps db = new DataBaseSteps();
+            //db.cargaTabelaUsuario();
+
 
         }
 
