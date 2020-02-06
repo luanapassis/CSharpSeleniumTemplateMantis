@@ -130,11 +130,11 @@
     <Compile Include="DataDriven\ExcelDataAccess.cs" />
     <Compile Include="DataDriven\ExcelUtil.cs" />
     <Compile Include="DataDriven\UserData.cs" />
-    <Compile Include="Pages\Page_Home.cs" />
-    <Compile Include="Steps\Step_home.cs" />
-    <Compile Include="Steps\Step_Inicial.cs" />
+    <Compile Include="Pages\HomePage.cs" />
+    <Compile Include="Steps\HomeStep.cs" />
+    <Compile Include="Steps\LoginStep.cs" />
     <Compile Include="Pages\PageObject.cs" />
-    <Compile Include="Pages\Page_Inicial.cs" />
+    <Compile Include="Pages\LoginPage.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

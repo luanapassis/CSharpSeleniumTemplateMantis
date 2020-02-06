@@ -7,18 +7,18 @@ using DesafioSelenium.Pages;
 
 namespace DesafioSelenium.Steps
 {
-    public class Step_home
+    public class HomeStep
     {
-        Page_Home pageHome;
+        HomePage homePage;
 
-        public Step_home()
+        public HomeStep()
         {
-            pageHome = new Page_Home();
+            homePage = new HomePage();
         }
 
         public string retornaUsuLogado()
         {
-            return pageHome.retornaUsuLogado();
+            return homePage.retornaUsuLogado();
         }
     }
 }

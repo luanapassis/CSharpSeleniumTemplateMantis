@@ -8,51 +8,51 @@ using DesafioUtils.ExtentReport;
 
 namespace DesafioSelenium.Flows
 {
-    public class Step_Inicial
+    public class LoginStep
     {
-        Page_Inicial pageInicial;
-        public Step_Inicial()
+        LoginPage loginPage;
+        public LoginStep()
         {
-            pageInicial = new Page_Inicial();
+            loginPage = new LoginPage();
         }
 
         public void abrirPagina()
         {
-            pageInicial.abrirPagina();
+            loginPage.abrirPagina();
         }
 
         public void fazLogin(string usuario, string senha)
         {
             this.abrirPagina();
-            pageInicial.preencheUsuario(usuario);
-            pageInicial.clicaBtnEntra();
-            pageInicial.preencheSenha(senha);
-            pageInicial.clicaBtnEntra2();
+            loginPage.preencheUsuario(usuario);
+            loginPage.clicaBtnEntra();
+            loginPage.preencheSenha(senha);
+            loginPage.clicaBtnEntra2();
 
         }
         public void fazLoginDataDriven(string testName)
         {
             this.abrirPagina();
-            pageInicial.preencheUsuarioDataDriven(testName);
-            pageInicial.clicaBtnEntra();
-            pageInicial.preencheSenhaDataDriven(testName);
-            pageInicial.clicaBtnEntra2();
+            loginPage.preencheUsuarioDataDriven(testName);
+            loginPage.clicaBtnEntra();
+            loginPage.preencheSenhaDataDriven(testName);
+            loginPage.clicaBtnEntra2();
         }
         public string retornaUsuarioDataDriven(string testName)
         {
-            return pageInicial.retornaUsuarioDataDriven(testName);
+            return loginPage.retornaUsuarioDataDriven(testName);
         }
 
         public string loginDataDriven2(int linha, string fileName)
         {
             this.abrirPagina();
-            string userNameUtilizado = pageInicial.loginDataDriven2(linha, fileName);
+            string userNameUtilizado = loginPage.loginDataDriven2(linha, fileName);
             return userNameUtilizado;
             
         }
         public string retornaErroLogin()
         {
-            return pageInicial.retornaMsgErroLogin();
+            return loginPage.retornaMsgErroLogin();
         }
     }
 }

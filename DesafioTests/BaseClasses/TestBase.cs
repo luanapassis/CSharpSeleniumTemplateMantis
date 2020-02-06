@@ -58,8 +58,9 @@ namespace DesafioTests.BaseClasses
             Reporter.InitializeReport();
 
             //carga no banco
-           // DataBaseSteps db = new DataBaseSteps();
-            //db.cargaTabelaUsuario();
+            DataBaseSteps db = new DataBaseSteps();
+            db.cargaTabelaUsuario();
+            db.cargaProjeto();
 
 
         }

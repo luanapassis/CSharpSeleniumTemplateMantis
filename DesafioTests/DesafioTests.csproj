@@ -129,7 +129,8 @@
   <ItemGroup>
     <Compile Include="BaseClasses\TestBase.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Tests\Test_inicial.cs" />
+    <Compile Include="Tests\LoginTest.cs" />
+    <Compile Include="Tests\ProjetoTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config">

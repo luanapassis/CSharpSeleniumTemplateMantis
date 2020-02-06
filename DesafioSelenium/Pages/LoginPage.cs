@@ -15,12 +15,12 @@ using DesafioUtils.ButtonHelpers;
 
 namespace DesafioSelenium.Pages
 {
-    public class Page_Inicial
+    public class LoginPage
     {
         WebDriverWait wait = null;
         IWebDriver driver = null;
 
-        public Page_Inicial()
+        public LoginPage()
         {
             //PageFactory.InitElements(DriverFactory.Instance, this);
             //teste wait = new WebDriverWait(DriverFactory.Instance, new TimeSpan(0, 0, 5));

@@ -45,6 +45,17 @@ namespace DesafioUtils.Queries
                 db.executaQuery(query3);
             }
         }
+        public void cargaProjeto()
+        {
+            string consulta = string.Format(@"SELECT * FROM mantis_project_table WHERE NAME = 'Teste'");
+            List<string> resultado = db.retornaDadosQuery(consulta);
+            if (resultado == null)
+            {
+                string query = string.Format(@"INSERT INTO mantis_project_table ( name, status, enabled, view_state, access_min, file_path, description, category_id, inherit_global)
+                                               VALUES('Teste', 10,1, 10, 10, '', '', 1, 1)");
+                db.executaQuery(query);
+            }
+        }
 
     }
 }

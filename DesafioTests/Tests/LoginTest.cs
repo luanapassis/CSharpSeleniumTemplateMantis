@@ -16,12 +16,12 @@ using DesafioUtils.ExtentReport;
 
 namespace DesafioTests.Tests
 {
-    class Test_inicial : TestBase
+    class LoginTest : TestBase
     {
         [PageObject]
-        Step_Inicial stepInicial;
+        LoginStep loginStep;
         [PageObject]
-        Step_home stepHome;
+        HomeStep homeStep;
 
         [Test]
         [Description ("Realiza o login com suscesso")]
@@ -29,8 +29,8 @@ namespace DesafioTests.Tests
         {            
             string usuario = "administrator";
             string senha = "administrator";
-            stepInicial.fazLogin(usuario, senha);
-            string usuLogado = stepHome.retornaUsuLogado();
+            loginStep.fazLogin(usuario, senha);
+            string usuLogado = homeStep.retornaUsuLogado();
             Assert.IsTrue(usuLogado == usuario, "Usuário não logado.");
         }
 
@@ -40,12 +40,12 @@ namespace DesafioTests.Tests
         {
             string usuario = "administrator";
             string senha = "administrator";
-            stepInicial.abrirPagina();
+            loginStep.abrirPagina();
             JavaScriptExecutorHelper.ExecuteJavaScript("document.querySelector('#username').setRangeText('"+ usuario + "')");
             JavaScriptExecutorHelper.ExecuteJavaScript("document.querySelector('#login-form > fieldset > input.width-40.pull-right.btn.btn-success.btn-inverse.bigger-110').click()");
             JavaScriptExecutorHelper.ExecuteJavaScript("document.querySelector('#password').setRangeText('"+ senha + "')");
             JavaScriptExecutorHelper.ExecuteJavaScript("document.querySelector('#login-form > fieldset > input.width-40.pull-right.btn.btn-success.btn-inverse.bigger-110').click()");
-            string usuLogado = stepHome.retornaUsuLogado();
+            string usuLogado = homeStep.retornaUsuLogado();
             Assert.IsTrue(usuLogado == usuario, "Usuário não logado.");
         }
 
@@ -54,7 +54,7 @@ namespace DesafioTests.Tests
         public void Test_dataDrivenLoginSucesso_old()
         {
             string testCase = "LoginSucesso";
-            stepInicial.fazLoginDataDriven(testCase);
+            loginStep.fazLoginDataDriven(testCase);
         }
 
         [Test]
@@ -66,8 +66,8 @@ namespace DesafioTests.Tests
 
             for (; rowNumber <= 4; rowNumber++)
             {
-                string usuario = stepInicial.loginDataDriven2(rowNumber, fileName);
-                string usuLogado = stepHome.retornaUsuLogado();
+                string usuario = loginStep.loginDataDriven2(rowNumber, fileName);
+                string usuLogado = homeStep.retornaUsuLogado();
                 Reporter.JustAddScreenshot();
                 Assert.IsTrue(usuLogado == usuario.ToLower(), "Usuário não logado.");
 
@@ -81,8 +81,8 @@ namespace DesafioTests.Tests
             string senha = "123456";
             string msg = "Sua conta pode estar desativada ou bloqueada ou o nome de usuário e a senha que você digitou não estão corretos.";
             
-            stepInicial.fazLogin(usuario, senha);
-            string msgErroLogin = stepInicial.retornaErroLogin();
+            loginStep.fazLogin(usuario, senha);
+            string msgErroLogin = loginStep.retornaErroLogin();
             Assert.That(msg.Contains(msgErroLogin));
         }
         [Test]
@@ -93,8 +93,8 @@ namespace DesafioTests.Tests
             string senha = "123456";
             string msg = "Sua conta pode estar desativada ou bloqueada ou o nome de usuário e a senha que você digitou não estão corretos.";
 
-            stepInicial.fazLogin(usuario, senha);
-            string msgErroLogin = stepInicial.retornaErroLogin();
+            loginStep.fazLogin(usuario, senha);
+            string msgErroLogin = loginStep.retornaErroLogin();
             Assert.That(msg.Contains(msgErroLogin));
         }
 
