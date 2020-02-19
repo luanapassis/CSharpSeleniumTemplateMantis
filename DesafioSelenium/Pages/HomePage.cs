@@ -7,18 +7,39 @@ using OpenQA.Selenium.Support.UI;
 using OpenQA.Selenium;
 using DesafioUtils.SeleniumUtilitarios;
 using DesafioUtils.SeleniumHelpers;
+using DesafioUtils.SeleniumHelpers.ElementsHelpers;
 
 namespace DesafioSelenium.Pages
 {
-    public class HomePage
+    public class HomePage : PageBase
     {
-        public IWebElement usuLogado => DriverFactory.Instance.FindElement(By.XPath("/html/body/div[1]/div/div[2]/ul/li[3]/a/span"));
-        public IWebElement projetos => DriverFactory.Instance.FindElement(By.XPath("(//a[@data-toggle = 'dropdown'])"));
+        By usuLogado = (By.XPath("//span[@class = 'user-info']"));
+        By menuProjeto = (By.XPath("//a[@data-toggle= 'dropdown']"));
+        By projetoMassa = (By.XPath("//a[text()=' Teste ']"));
+        By campoPesquisaTarefa = (By.Name("bug_id"));
+
+
 
         public string retornaUsuLogado()
         {
-           return usuLogado.Text;
-
+           return GetText(usuLogado);
+        }
+        public string retornaProjetoMassa()
+        {
+            Click(menuProjeto);
+            string retorno = GetText(projetoMassa);
+            Click(menuProjeto);
+            return retorno;
+        }
+        public void clicaProjetoMassa()
+        {
+            Click(menuProjeto);
+            Click(projetoMassa);
+        }
+        public void preenchePesquisaTarefa(string tarefaId)
+        {
+            SendKeys(campoPesquisaTarefa, tarefaId);
+            SendKeys(campoPesquisaTarefa, Keys.Enter);
         }
     }
 }

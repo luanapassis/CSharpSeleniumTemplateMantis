@@ -12,28 +12,17 @@ using DesafioUtils.JavaScriptHelpres;
 using DesafioSelenium.DataDriven;
 using System.Configuration;
 using DesafioUtils.ButtonHelpers;
+using DesafioUtils.SeleniumHelpers.ElementsHelpers;
 
 namespace DesafioSelenium.Pages
 {
-    public class LoginPage
+    public class LoginPage : PageBase
     {
-        WebDriverWait wait = null;
-        IWebDriver driver = null;
-
-        public LoginPage()
-        {
-            //PageFactory.InitElements(DriverFactory.Instance, this);
-            //teste wait = new WebDriverWait(DriverFactory.Instance, new TimeSpan(0, 0, 5));
-            //teste driver = DriverFactory.Instance;
-        }
-
-        public IWebElement campoUsuario => DriverFactory.Instance.FindElement(By.Id("username"));
-
-        public IWebElement btnEntrar => DriverFactory.Instance.FindElement(By.XPath("/html/body/div[1]/div/div/div/div/div[4]/div/div/div[1]/form/fieldset/input[2]"));
-
-        public IWebElement campoSenha => DriverFactory.Instance.FindElement(By.Id("password"));
-        public IWebElement btnEntrar2 => DriverFactory.Instance.FindElement(By.XPath("/html/body/div[1]/div/div/div/div/div[4]/div/div/div/form/fieldset/input[3]"));
-        public IWebElement msgErroLogin => DriverFactory.Instance.FindElement(By.XPath("/html/body/div[1]/div/div/div/div/div[4]/p"));
+        By campoUsuario = (By.Id("username"));
+        By btnEntrar =(By.XPath("//input[@value= 'Entrar']"));
+        By campoSenha =(By.Id("password"));
+        //By btnEntrar2 =(By.XPath("/html/body/div[1]/div/div/div/div/div[4]/div/div/div/form/fieldset/input[3]"));
+        By msgErroLogin =(By.XPath("/html/body/div[1]/div/div/div/div/div[4]/p"));
 
 
         public void abrirPagina()
@@ -43,31 +32,28 @@ namespace DesafioSelenium.Pages
         }
 
         public void preencheUsuario(string usuario)
-        {            
-            campoUsuario.TypeInTextBox(usuario);
+        {
+            SendKeys(campoUsuario, usuario);
         }
         public void clicaBtnEntra()
         {
-            btnEntrar.ClickButton();          
+            Click(btnEntrar);
         }
         public void preencheSenha(string senha)
         {
-            campoSenha.TypeInTextBox(senha);
+            SendKeys(campoSenha, senha);
         }
-        public void clicaBtnEntra2()
-        {
-            btnEntrar2.ClickButton();
-        }
+
         #region dataDriven modelo 1
         public void preencheUsuarioDataDriven(string testName)
         {
             var userData = ExcelDataAccess.GetTestData(testName);
-            campoUsuario.TypeInTextBox(userData.Username);
+            SendKeys(campoUsuario, userData.Username);
         }
         public void preencheSenhaDataDriven(string testName)
         {
             var userData = ExcelDataAccess.GetTestData(testName);
-            campoSenha.TypeInTextBox(userData.Password);
+            SendKeys(campoSenha, userData.Password);
         }
         public string retornaUsuarioDataDriven(string testName)
         {
@@ -87,16 +73,16 @@ namespace DesafioSelenium.Pages
             String userName = util.ReadData(linha, "Column0");//Login
             String password = util.ReadData(linha, "Column1");//senha 01
 
-            campoUsuario.TypeInTextBox(userName);
+            SendKeys(campoUsuario, userName);
             clicaBtnEntra();
-            campoSenha.TypeInTextBox(password);
-            clicaBtnEntra2();
+            SendKeys(campoSenha, password);
+            clicaBtnEntra();
 
             return userName;
         }
         public string retornaMsgErroLogin()
         {
-            return msgErroLogin.Text;
+            return GetText(msgErroLogin);
         }
         #endregion
 

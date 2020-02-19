@@ -130,7 +130,13 @@
     <Compile Include="DataDriven\ExcelDataAccess.cs" />
     <Compile Include="DataDriven\ExcelUtil.cs" />
     <Compile Include="DataDriven\UserData.cs" />
+    <Compile Include="Pages\GerenciarMarcadoresPage.cs" />
+    <Compile Include="Pages\GerenciarProjetoPage.cs" />
+    <Compile Include="Pages\GerenciarUsuarioPage.cs" />
     <Compile Include="Pages\HomePage.cs" />
+    <Compile Include="Pages\MinhaVisaoPage.cs" />
+    <Compile Include="Pages\TarefasPage.cs" />
+    <Compile Include="Pages\VerTarefasPage.cs" />
     <Compile Include="Steps\HomeStep.cs" />
     <Compile Include="Steps\LoginStep.cs" />
     <Compile Include="Pages\PageObject.cs" />

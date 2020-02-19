@@ -24,8 +24,6 @@ namespace DesafioTests.BaseClasses
         public TestBase()
         {
             this.ProxyGenerator = new ProxyGenerator();
-             //cria instancia do browser 
-             //passa o browser a ser testado
             DriverFactory.Initialize(ConfigurationManager.AppSettings["Browser"]);
             InjectPageObjects(CollectPageObjects(), null);
         }
@@ -55,13 +53,13 @@ namespace DesafioTests.BaseClasses
 
         public void OneTimeSetup()
         {
-            Reporter.InitializeReport();
+            Reporter.CreateReport();
 
             //carga no banco
             DataBaseSteps db = new DataBaseSteps();
             db.cargaTabelaUsuario();
             db.cargaProjeto();
-
+            db.cargaMarcadores();
 
         }
 
@@ -69,31 +67,28 @@ namespace DesafioTests.BaseClasses
 
         public void SetupTest()
         {
+            DataBaseSteps db = new DataBaseSteps();
+            db.atualizacaoCargaUsuario();
+            db.atualizacaoCargaProjeto();
+            db.atualizacaoCargaMarcadores();
             Reporter.AddTest();
-            //qntTestes++;
-            //DriverFactory.Instance.Manage().Cookies.DeleteAllCookies();
+            DriverFactory.Initialize(ConfigurationManager.AppSettings["Browser"]);
+            DriverFactory.Instance.Manage().Cookies.DeleteAllCookies();
 
         }
 
         [TearDown]
         public void TearDownTest()
         {
-            Reporter.InfoTestAddScreenshot();
+            Reporter.AddTestResult();
             Reporter.GenerateReport();
-
-            //nao sei pra q server PlaylistTestHelper.AddTestToPlaylist();
-            //var result = TestContext.CurrentContext.Result.Outcome.Status;
-            //if (result == TestStatus.Failed)
-            //{
-           //     qntTestesFalhas++;
-            //}
+            
         }
 
         [OneTimeTearDown]
         public void OneTimeTearDown()
         {
-
-           // DriverFactory.Instance.Quit();
+            DriverFactory.QuitInstace();
         }
 
     }

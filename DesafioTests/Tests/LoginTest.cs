@@ -27,8 +27,8 @@ namespace DesafioTests.Tests
         [Description ("Realiza o login com suscesso")]
         public void Test_fazLoginSucesso()
         {            
-            string usuario = "administrator";
-            string senha = "administrator";
+            string usuario = "luana.assis";
+            string senha = "123456";
             loginStep.fazLogin(usuario, senha);
             string usuLogado = homeStep.retornaUsuLogado();
             Assert.IsTrue(usuLogado == usuario, "Usuário não logado.");
@@ -38,8 +38,8 @@ namespace DesafioTests.Tests
         [Description("Realiza o login com suscesso utilizando JavaScript")]
         public void Test_fazLoginUsandoJavaScriptSucesso()
         {
-            string usuario = "administrator";
-            string senha = "administrator";
+            string usuario = "luana.assis";
+            string senha = "123456";
             loginStep.abrirPagina();
             JavaScriptExecutorHelper.ExecuteJavaScript("document.querySelector('#username').setRangeText('"+ usuario + "')");
             JavaScriptExecutorHelper.ExecuteJavaScript("document.querySelector('#login-form > fieldset > input.width-40.pull-right.btn.btn-success.btn-inverse.bigger-110').click()");
@@ -49,8 +49,6 @@ namespace DesafioTests.Tests
             Assert.IsTrue(usuLogado == usuario, "Usuário não logado.");
         }
 
-        [Test]
-        [Ignore ("Data Driven com conection string não funciona no Jenkins =(")]
         public void Test_dataDrivenLoginSucesso_old()
         {
             string testCase = "LoginSucesso";
@@ -58,13 +56,13 @@ namespace DesafioTests.Tests
         }
 
         [Test]
-        [Description("Realiza o login com suscesso utilizando dataDriven com 4 registro.")]
+        [Description("Realiza o login com suscesso utilizando dataDriven com 3 registro.")]
         public void Test_dataDrivenLoginSucesso()
         {
             String fileName = ConfigurationManager.AppSettings["TestDataSheetPath2"];
             int rowNumber = 1;
 
-            for (; rowNumber <= 4; rowNumber++)
+            for (; rowNumber <= 3; rowNumber++)
             {
                 string usuario = loginStep.loginDataDriven2(rowNumber, fileName);
                 string usuLogado = homeStep.retornaUsuLogado();
@@ -89,8 +87,8 @@ namespace DesafioTests.Tests
         [Description("Realizar o login com senha incorreta")]
         public void Test_fazLoginSenhaIncorreta()
         {
-            string usuario = "administrator";
-            string senha = "123456";
+            string usuario = "luana.assis";
+            string senha = "1234567";
             string msg = "Sua conta pode estar desativada ou bloqueada ou o nome de usuário e a senha que você digitou não estão corretos.";
 
             loginStep.fazLogin(usuario, senha);
@@ -98,15 +96,17 @@ namespace DesafioTests.Tests
             Assert.That(msg.Contains(msgErroLogin));
         }
 
-        
         [Test]
-        public void Test_banco()
+        public void Test_fazLoginUsuarioDesativado()
         {
-            DataBaseSteps db = new DataBaseSteps();
-            db.cargaTabelaUsuario();
+            string usuario = "usu.inativo";
+            string senha = "123456";
+            string msg = "Sua conta pode estar desativada ou bloqueada ou o nome de usuário e a senha que você digitou não estão corretos.";
 
+            loginStep.fazLogin(usuario, senha);
+            string msgErroLogin = loginStep.retornaErroLogin();
+            Assert.That(msg.Contains(msgErroLogin));
         }
-          
 
     }
 }

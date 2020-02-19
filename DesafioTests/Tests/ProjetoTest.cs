@@ -22,14 +22,37 @@ namespace DesafioTests.Tests
         LoginStep loginStep;
         [PageObject]
         HomeStep homeStep;
+        [PageObject]
+        HomePage homePage;
+
+        public string usuario = ConfigurationManager.AppSettings["usuarioMantis"];
+        public string senha = ConfigurationManager.AppSettings["senhaMantis"];
 
         [Test]
-        [Description ("")]
+        [Description ("Verifica se o projeto cadastrado pela massa de teste está disponível para seleção")]
         public void Test_verificaProjetoExistente()
         {
-            string usuario = "luana.assis";
-            string senha = "123456";
+            string projetoExistente = "Teste";
+
             loginStep.fazLogin(usuario, senha);
+            string projetoLocalizado = homePage.retornaProjetoMassa();
+
+            Assert.IsTrue(projetoExistente == projetoLocalizado);
+
+        }
+
+        [Test]
+        [Description("Verifica se o projeto cadastrado pela massa de teste está selecionado")]
+        public void Test_verificaSelecaoProjetoExistente()
+        {
+            string projetoExistente = "Teste";
+
+            loginStep.fazLogin(usuario, senha);
+            string projetoLocalizado = homePage.retornaProjetoMassa();
+            homePage.clicaProjetoMassa();
+
+            Assert.IsTrue(projetoExistente == projetoLocalizado);
+
         }
     }
 }

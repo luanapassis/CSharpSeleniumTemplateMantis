@@ -27,7 +27,7 @@ namespace DesafioSelenium.Flows
             loginPage.preencheUsuario(usuario);
             loginPage.clicaBtnEntra();
             loginPage.preencheSenha(senha);
-            loginPage.clicaBtnEntra2();
+            loginPage.clicaBtnEntra();
 
         }
         public void fazLoginDataDriven(string testName)
@@ -36,7 +36,7 @@ namespace DesafioSelenium.Flows
             loginPage.preencheUsuarioDataDriven(testName);
             loginPage.clicaBtnEntra();
             loginPage.preencheSenhaDataDriven(testName);
-            loginPage.clicaBtnEntra2();
+            loginPage.clicaBtnEntra();
         }
         public string retornaUsuarioDataDriven(string testName)
         {

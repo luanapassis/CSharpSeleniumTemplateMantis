@@ -17,7 +17,7 @@ namespace DesafioUtils.SeleniumHelpers
             DriverFactory.Instance.Navigate().GoToUrl(url);
             string pageName = DriverFactory.Instance.Title;
 
-            Reporter.InfoTest(Utilitarios.GetCurrentMethod() + " => " + "Acessando a página: " + pageName + " \n- URL: " + url);
+           // Reporter.InfoTest(Utilitarios.GetCurrentMethod() + " => " + "Acessando a página: " + pageName + " \n- URL: " + url);
     
         }
 

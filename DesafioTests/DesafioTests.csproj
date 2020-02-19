@@ -128,9 +128,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BaseClasses\TestBase.cs" />
+    <Compile Include="PreTests\PreTestMethods.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Tests\GerenciarTests.cs" />
     <Compile Include="Tests\LoginTest.cs" />
     <Compile Include="Tests\ProjetoTest.cs" />
+    <Compile Include="Tests\TarefasTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config">

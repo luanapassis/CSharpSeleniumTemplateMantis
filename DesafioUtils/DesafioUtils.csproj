@@ -126,6 +126,7 @@
     <Compile Include="AchivesHelpres\_PlaylistTestHelper.cs" />
     <Compile Include="BDDHelpers\GetCurrentContextScenarioHelper.cs" />
     <Compile Include="Queries\DataBaseSteps.cs" />
+    <Compile Include="SeleniumHelpers\ElementsHelpers\PageBase.cs" />
     <Compile Include="SeleniumHelpers\Elements\ButtonHelper.cs" />
     <Compile Include="DataBaseHelpres\DatabaseInteractions.cs" />
     <Compile Include="ExtentReport\Reporter.cs" />

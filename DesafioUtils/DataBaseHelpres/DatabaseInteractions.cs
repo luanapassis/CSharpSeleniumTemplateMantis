@@ -11,12 +11,13 @@ namespace DesafioUtils.DataBaseHelpres
 {
     public class DataBaseInteractions
     {
+        //                                      "Password=" + ConfigurationManager.AppSettings["DBPassword"] + ";" +
+
         MySqlConnection conn = null;
         string connectionString = "Server=" + ConfigurationManager.AppSettings["DatabaseServer"] + ";" +
                                       "Port=" + ConfigurationManager.AppSettings["Port"] + ";" +
                                       "Database=" + ConfigurationManager.AppSettings["DatabaseName"] + ";" +
                                       "UID=" + ConfigurationManager.AppSettings["DBUser"] + "; " +
-                                      "Password=" + ConfigurationManager.AppSettings["DBPassword"] + ";" +
                                       "SslMode=" + ConfigurationManager.AppSettings["SslMode"];
 
         private MySqlConnection GetDBConnection()

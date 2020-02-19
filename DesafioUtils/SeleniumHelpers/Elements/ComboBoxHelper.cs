@@ -15,35 +15,35 @@ namespace DesafioUtils.SeleniumHelpers.Elements
     public static class ComboBoxHelper
     {
 
-        private static SelectElement select;
+        //private static SelectElement select;
 
-        public static void SelectElement(this IWebElement element, int index)
-        {
-            select = new SelectElement(element);
-            select.SelectByIndex(index);
+        //public static void SelectElement(this IWebElement element, int index)
+        //{
+        //    select = new SelectElement(element);
+        //    select.SelectByIndex(index);
 
-        }
+        //}
 
-        public static IList<string> GetAllItem(IWebElement element)
-        {
-            select = new SelectElement(element);
-            return select.Options.Select((x) => x.Text).ToList();
+        //public static IList<string> GetAllItem(IWebElement element)
+        //{
+        //    select = new SelectElement(element);
+        //    return select.Options.Select((x) => x.Text).ToList();
 
-        }
+        //}
 
-        public static void SelectElement(this IWebElement element, string visibleText)
-        {
-            //DynamicWaitHelper.WaitForTextInElement(element, visibleText);
-            if (visibleText != string.Empty)
-            {
-                new WebDriverWait(DriverFactory.Instance, TimeSpan.FromSeconds(Convert.ToDouble(ConfigurationManager.AppSettings["DefaultImplicityWait"]))).Until(ExpectedConditions.TextToBePresentInElement(element, visibleText));
+        //public static void SelectElement(this IWebElement element, string visibleText)
+        //{
+        //    //DynamicWaitHelper.WaitForTextInElement(element, visibleText);
+        //    if (visibleText != string.Empty)
+        //    {
+        //        new WebDriverWait(DriverFactory.Instance, TimeSpan.FromSeconds(Convert.ToDouble(ConfigurationManager.AppSettings["DefaultImplicityWait"]))).Until(ExpectedConditions.TextToBePresentInElement(element, visibleText));
 
-                select = new SelectElement(element);
-                select.SelectByText(visibleText);
-                Reporter.InfoTest(Utilitarios.GetCurrentMethod() + " => " + "Valor selecionado: " + visibleText);
-            }
+        //        select = new SelectElement(element);
+        //        select.SelectByText(visibleText);
+        //        Reporter.InfoTest(Utilitarios.GetCurrentMethod() + " => " + "Valor selecionado: " + visibleText);
+        //    }
 
 
-        }
+        //}
     }
 }

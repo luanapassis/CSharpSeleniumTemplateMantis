@@ -100,8 +100,13 @@ namespace DesafioUtils.SeleniumUtilitarios
 
             }
         }
-        
-       
+        public static void QuitInstace()
+        {
+            Instance.Quit();
+            Instance.Dispose();
+            Instance = null;
+        }
+
         public static void GetJSError()
         {
             if(ConfigurationManager.AppSettings["Browser"] == "Chrome")
@@ -113,7 +118,7 @@ namespace DesafioUtils.SeleniumUtilitarios
                 {
                     foreach (var entry in entries.Where(e => e.Level == OpenQA.Selenium.LogLevel.Severe && e.Message.Contains("javascript")))
                     {
-                        Reporter.InfoTestWarning(entry.Message);
+                       // Reporter.InfoTestWarning(entry.Message);
                     }
                 }
             }
