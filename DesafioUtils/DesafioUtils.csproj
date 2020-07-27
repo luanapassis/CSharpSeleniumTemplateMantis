@@ -125,6 +125,7 @@
   <ItemGroup>
     <Compile Include="AchivesHelpres\_PlaylistTestHelper.cs" />
     <Compile Include="BDDHelpers\GetCurrentContextScenarioHelper.cs" />
+    <Compile Include="DataBaseHelpres\DataBaseInteractionsSqlServer.cs" />
     <Compile Include="Queries\DataBaseSteps.cs" />
     <Compile Include="SeleniumHelpers\ElementsHelpers\PageBase.cs" />
     <Compile Include="SeleniumHelpers\Elements\ButtonHelper.cs" />
