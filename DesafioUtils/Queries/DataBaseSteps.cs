@@ -299,7 +299,7 @@ namespace DesafioUtils.Queries
         }
         public List<string> retornaRelacaoTarefa(int id)
         {
-            string consulta = string.Format(@"SELECT * from mantis_bug_relationship_mantis WHERE SOURCE_bug_id = '{0}'", id);
+            string consulta = string.Format(@"SELECT * from mantis_bug_relationship_mantis WHERE SOURCE_bug_id = '{0}' ORDER BY destination_bug_id desc", id);
             List<string> resultado = db.retornaDadosQuery(consulta);
             return resultado;
         }
