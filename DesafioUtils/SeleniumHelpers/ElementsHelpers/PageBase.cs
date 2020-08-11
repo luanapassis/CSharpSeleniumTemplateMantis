@@ -185,6 +185,19 @@ namespace DesafioUtils.SeleniumHelpers.ElementsHelpers
             Reporter.AddTestInfo(3, "RETURN: " + result);
             return result;
         }
+        protected bool ReturnIfElementExists(By locator)
+        {
+            try
+            {
+                bool result = driver.FindElement(locator).Displayed;
+                Reporter.AddTestInfo(3, "RETURN: " + result);
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
 
         protected bool ReturnIfElementIsEnabled(By locator)
         {
