@@ -29,30 +29,7 @@ namespace DesafioSelenium.Flows
             loginPage.preencheSenha(senha);
             loginPage.clicaBtnEntra();
 
-        }
-        public void fazLoginDataDriven(string testName)
-        {
-            this.abrirPagina();
-            loginPage.preencheUsuarioDataDriven(testName);
-            loginPage.clicaBtnEntra();
-            loginPage.preencheSenhaDataDriven(testName);
-            loginPage.clicaBtnEntra();
-        }
-        public string retornaUsuarioDataDriven(string testName)
-        {
-            return loginPage.retornaUsuarioDataDriven(testName);
-        }
-
-        public string loginDataDriven2(int linha, string fileName)
-        {
-            this.abrirPagina();
-            string userNameUtilizado = loginPage.loginDataDriven2(linha, fileName);
-            return userNameUtilizado;
-            
-        }
-        public string retornaErroLogin()
-        {
-            return loginPage.retornaMsgErroLogin();
-        }
+        }        
+       
     }
 }

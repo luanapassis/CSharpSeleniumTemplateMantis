@@ -129,6 +129,7 @@
   <ItemGroup>
     <Compile Include="DataDriven\ExcelDataAccess.cs" />
     <Compile Include="DataDriven\ExcelUtil.cs" />
+    <Compile Include="DataDriven\LoginSucessoDataDriven.cs" />
     <Compile Include="DataDriven\UserData.cs" />
     <Compile Include="Pages\GerenciarMarcadoresPage.cs" />
     <Compile Include="Pages\GerenciarProjetoPage.cs" />

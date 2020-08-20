@@ -44,7 +44,7 @@ namespace DesafioSelenium.Pages
             SendKeys(campoSenha, senha);
         }
 
-        #region dataDriven modelo 1
+        #region lendo de planilha excel modelo 1
         public void preencheUsuarioDataDriven(string testName)
         {
             var userData = ExcelDataAccess.GetTestData(testName);
@@ -62,7 +62,7 @@ namespace DesafioSelenium.Pages
         }
         #endregion
 
-        #region dataDriven modelo 2
+        #region lendo de planilha execel modelo 2
         public string loginDataDriven2(int linha, string fileName)
         {
            
