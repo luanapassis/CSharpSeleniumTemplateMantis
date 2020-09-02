@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using DesafioUtils.ProjectsUtilitarios;
 using NUnit.Framework;
 
 namespace DesafioSelenium.DataDriven
@@ -15,8 +16,10 @@ namespace DesafioSelenium.DataDriven
             get
             {
                 var testCases = new List<TestCaseData>();
+                string fullPath = Utilitarios.GetProjectPath();
+                string path = fullPath.Replace("DesafioTests", "DesafioSelenium");
 
-                using (var fs = File.OpenRead(@"C:\automacao\Desafio\DesafioSelenium\DataDriven\TestData3.csv"))
+                using (var fs = File.OpenRead(path+"\\DataDriven\\TestData3.csv"))
                 using (var sr = new StreamReader(fs))
                 {
                     string line = string.Empty;

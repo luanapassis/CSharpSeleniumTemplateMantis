@@ -75,10 +75,25 @@ namespace DesafioUtils.ProjectsUtilitarios
               .Select(s => s[random.Next(s.Length)]).ToArray());
         }
 
+        //usando para fazer datadriven
+
+        /*
+         metodo do datadriven
+         public static IEnumerable NomeMetodoDataDriven()
+         {
+            return GeneralHelpers.ReturnCSVData("local do csv")
+         }
+         
+         metodo de teste ser:
+         [Test, TestCaseSource("NomeDoMetodo")] 
+         public void NomeDoMetodoDeTeste(ArrayList testData)
+          
+         */
         public static IEnumerable ReturnCSVData(string csvPath)
         {
             using (StreamReader sr = new StreamReader(csvPath, System.Text.Encoding.GetEncoding(1252)))
             {
+                string headerLine = sr.ReadLine();
                 string line;
                 while ((line = sr.ReadLine()) != null)
                 {
@@ -88,6 +103,7 @@ namespace DesafioUtils.ProjectsUtilitarios
                 }
             }
         }
+       
 
         public static string ReturnProjectPath()
         {

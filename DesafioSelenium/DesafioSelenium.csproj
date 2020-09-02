@@ -148,6 +148,7 @@
     <None Include="app.config" />
     <None Include="DataDriven\TestData.xlsx" />
     <None Include="DataDriven\TestData2.xlsx" />
+    <None Include="DataDriven\TestData3.csv" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
